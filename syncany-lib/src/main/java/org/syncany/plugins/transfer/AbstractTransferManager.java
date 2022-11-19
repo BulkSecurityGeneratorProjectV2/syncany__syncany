@@ -19,6 +19,7 @@ package org.syncany.plugins.transfer;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,7 +57,7 @@ public abstract class AbstractTransferManager implements TransferManager { // TO
 	 */
 	protected File createTempFile(String name) throws IOException {
 		if (config == null) {
-			return File.createTempFile(String.format("temp-%s-", name), ".tmp");
+			return Files.createTempFile(String.format("temp-%s-", name), ".tmp").toFile();
 		}
 		else {
 			return config.getCache().createTempFile(name);

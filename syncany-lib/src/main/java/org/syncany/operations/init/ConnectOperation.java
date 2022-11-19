@@ -19,6 +19,7 @@ package org.syncany.operations.init;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -339,7 +340,7 @@ public class ConnectOperation extends AbstractInitOperation {
 
 	protected File downloadFile(TransferManager transferManager, RemoteFile remoteFile) throws StorageException {
 		try {
-			File tmpRepoFile = File.createTempFile("syncanyfile", "tmp");
+			File tmpRepoFile = Files.createTempFile("syncanyfile", "tmp").toFile();
 
 			transferManager.download(remoteFile, tmpRepoFile);
 			return tmpRepoFile;

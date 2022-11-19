@@ -521,7 +521,7 @@ public class TransactionAwareFeatureTransferManager implements FeatureTransferMa
 		// TODO [low] duplicate code with AbstractTransferManager
 
 		if (config == null) {
-			return File.createTempFile(String.format("temp-%s-", name), ".tmp");
+			return Files.createTempFile(String.format("temp-%s-", name), ".tmp").toFile();
 		}
 		else {
 			return config.getCache().createTempFile(name);

@@ -21,6 +21,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
 import java.io.File;
+import java.nio.file.Files;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -97,7 +98,7 @@ public class ActionFileHandler {
 	private void uploadActionFile(ActionRemoteFile actionFile) throws Exception {
 		logger.log(Level.INFO, "Uploading action file: " + actionFile);
 
-		File tempActionFile = File.createTempFile("syncany-action-", ".tmp");
+		File tempActionFile = Files.createTempFile("syncany-action-", ".tmp").toFile();
 		tempActionFile.deleteOnExit();
 		
 		transferManager.upload(tempActionFile, actionFile);

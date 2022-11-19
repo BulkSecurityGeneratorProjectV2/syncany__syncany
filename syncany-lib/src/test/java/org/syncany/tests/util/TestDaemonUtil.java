@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
 
 import org.apache.commons.io.IOUtils;
 import org.syncany.config.UserConfig;
@@ -41,7 +42,7 @@ public class TestDaemonUtil {
 		// Load config from resource
 		String fullPathResource = String.format(DAEMON_RESOURCE_PATTERN, resourceFilename);
 		InputStream inputStream = DaemonConfigTO.class.getResourceAsStream(fullPathResource);
-		File tempConfigFile = File.createTempFile("syncanyTemp-", "");
+		File tempConfigFile = Files.createTempFile("syncanyTemp-", "").toFile();
 		tempConfigFile.deleteOnExit();
 		
 		try (FileOutputStream outputStream = new FileOutputStream(tempConfigFile)) {

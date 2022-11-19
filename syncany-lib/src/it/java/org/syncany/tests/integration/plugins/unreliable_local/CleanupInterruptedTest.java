@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.TreeMap;
 
@@ -160,7 +161,7 @@ public class CleanupInterruptedTest {
 		assertEquals(1, new File(testConnection.getPath(), "actions").list().length);
 
 		File tempDir = TestFileUtil.createTempDirectoryInSystemTemp();
-		File tempFile = File.createTempFile("multichunk", "", tempDir);
+		File tempFile = Files.createTempFile(tempDir.toPath(), "multichunk", "").toFile();
 		for (RemoteFile remoteFile : transferManagerA.list(DatabaseRemoteFile.class).values()) {
 			transferManagerA.download(remoteFile, tempFile);
 			assertTrue(tempFile.exists());

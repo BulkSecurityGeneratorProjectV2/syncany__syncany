@@ -53,7 +53,7 @@ public class TransferSettingsTest {
 
 	@Before
 	public void before() throws Exception {
-		tmpFile = File.createTempFile("syncany-transfer-settings-test", "tmp");
+		tmpFile = Files.createTempFile("syncany-transfer-settings-test", "tmp").toFile();
 		config = TestConfigUtil.createTestLocalConfig();
 		assertNotNull(Plugins.get("dummy"));
 		assertNotNull(config);

@@ -19,6 +19,7 @@ package org.syncany.config;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -145,7 +146,7 @@ public class Cache {
 	 * @return Temporary file in local directory cache
 	 */
     public File createTempFile(String name) throws IOException {
-       File tempFile = File.createTempFile(String.format("temp-%s-", name), ".tmp", cacheDir);
+       File tempFile = Files.createTempFile(cacheDir.toPath(), String.format("temp-%s-", name), ".tmp").toFile();
        tempFile.deleteOnExit();
        
        return tempFile;

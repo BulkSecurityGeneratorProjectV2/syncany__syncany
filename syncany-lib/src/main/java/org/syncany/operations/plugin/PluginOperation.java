@@ -29,6 +29,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -487,7 +488,7 @@ public class PluginOperation extends Operation {
 		urlConnection.setConnectTimeout(2000);
 		urlConnection.setReadTimeout(2000);
 
-		File tempPluginFile = File.createTempFile("syncany-plugin", "tmp");
+		File tempPluginFile = Files.createTempFile("syncany-plugin", "tmp").toFile();
 		tempPluginFile.deleteOnExit();
 
 		logger.log(Level.INFO, "Downloading to " + tempPluginFile + " ...");
